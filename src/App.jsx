@@ -1,16 +1,19 @@
-import { Button, Flex } from '@chakra-ui/react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Landing from './pages/Landing';
+import Frontend from './pages/Frontend';
+import Backend from './pages/Backend';
 
-function App() {
+export default function App() {
   return (
-    <Flex
-      width="100%"
-      height="100%"
-      justifyContent="center"
-      alignItems="center"
-    >
-      hi
-    </Flex>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Landing />} />
+          <Route path="/frontend" element={<Frontend />} />
+          <Route path="/backend" element={<Backend />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
