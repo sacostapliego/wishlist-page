@@ -13,26 +13,37 @@ import {
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom'
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FaGear, FaCode} from "react-icons/fa6";
 
 const navLinks = [
-    { label: 'Frontend', to: '/frontend' },
-    { label: 'Backend', to: '/backend' },
+    { label: 'Frontend', to: '/frontend', icon: FaCode },
+    { label: 'Backend', to: '/backend', icon: FaGear },
   ];
 
 export default function Header({ brand = 'BluJays Wishlist', transparentUntil = '#hero', wishlistUrl }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [overTransparentZone, setOverTransparentZone] = useState(true);
+    // replace old isTransparent state
+    const [scrolled, setScrolled] = useState(false);
+    const [overHero, setOverHero] = useState(false);
     const headerRef = useRef(null);
   
     useEffect(() => {
       const update = () => {
-        const el = document.querySelector(transparentUntil);
         const headerH = headerRef.current?.offsetHeight ?? 64;
-        if (!el) return setOverTransparentZone(false);
+        const el = document.querySelector(transparentUntil);
+  
+        setScrolled(window.scrollY > 0);
+  
+        if (!el) {
+          setOverHero(false);
+          return;
+        }
+  
         const rect = el.getBoundingClientRect();
-        // Transparent while the header overlaps the target section
-        setOverTransparentZone(rect.bottom > headerH);
+        // header is over hero while hero's bottom is below header height
+        setOverHero(rect.bottom > headerH);
       };
+  
       update();
       window.addEventListener('scroll', update, { passive: true });
       window.addEventListener('resize', update);
@@ -42,21 +53,28 @@ export default function Header({ brand = 'BluJays Wishlist', transparentUntil = 
       };
     }, [transparentUntil]);
   
-    const bg = overTransparentZone ? 'transparent' : 'blackAlpha.700';
-    const borderColor = overTransparentZone ? 'transparent' : 'whiteAlpha.200';
+    const solidBg = '#141414';
+    const blurBg = 'rgba(20,20,20,0.55)';
+  
+    const isBlur = scrolled && overHero;
+    const bg = isBlur ? blurBg : solidBg;
+    const borderColor = isBlur ? 'rgba(255,255,255,0.14)' : 'transparent';
+    const backdrop = isBlur ? 'saturate(180%) blur(10px)' : 'none';
   
     return (
         <Box
-          ref={headerRef}
-          as="header"
-          position="sticky"
-          top={0}
-          zIndex="banner"
-          bg={bg}
-          color="whiteAlpha.900"
-          borderBottomWidth="1px"
-          borderBottomColor={borderColor}
-          transition="background-color 0.2s ease, border-color 0.2s ease"
+        ref={headerRef}
+        as="header"
+        position="sticky"
+        top={0}
+        zIndex="banner"
+        bg={bg}
+        color="whiteAlpha.900"
+        backdropFilter={backdrop}
+        transition="background-color 0.2s ease, border-color 0.2s ease, backdrop-filter 0.2s ease"
+        sx={{
+          'button:focus, a:focus': { outline: 'none', boxShadow: 'none' },
+        }}
         >
           <Flex
             as="nav"
@@ -70,28 +88,49 @@ export default function Header({ brand = 'BluJays Wishlist', transparentUntil = 
           >
         {/* Left: Brand */}
         <HStack spacing={3}>
-          <Box boxSize="24px" borderRadius="6px" bgGradient="linear(to-br, blue.500, cyan.400)" />
-          <ChakraLink as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
+          <Box boxSize="24px" borderRadius="6px" />
+          <ChakraLink
+            as={RouterLink}
+            to="/"
+            _hover={{ textDecoration: 'none' }}
+            _focus={{ outline: 'none', boxShadow: 'none' }}
+            _focusVisible={{ outline: 'none', boxShadow: 'none' }}
+          >
             <Text fontWeight="semibold" letterSpacing="-0.02em" fontSize="x-large">
               {brand}
             </Text>
           </ChakraLink>
         </HStack>
 
+
         {/* Right: Desktop nav */}
         <HStack spacing={1} display={{ base: 'none', md: 'flex' }}>
-        {navLinks.map((l) => (
-                    <Button
-                      key={l.label}
-                      as={RouterLink}
-                      to={l.to}
-                      variant="ghost"
-                      justifyContent="flex-start"
-                      onClick={onClose}
-                    >
-                      {l.label}
-                    </Button>
-                  ))}
+          {navLinks.map((l) => {
+            const Icon = l.icon;
+            return (
+              <Button
+                key={l.label}
+                as={RouterLink}
+                to={l.to}
+                variant="ghost"
+                size="lg"
+                fontWeight="semibold"
+                borderRadius={'8px'}
+                _hover={{ '& .nav-icon': { transform: 'rotate(-15deg)' } }}
+              >
+                <HStack spacing={2}>
+                  <Box
+                    as={Icon}
+                    className="nav-icon"
+                    fontSize="lg"
+                    transition="transform 200ms ease"
+                    willChange="transform"
+                  />
+                  <Text>{l.label}</Text>
+                </HStack>
+              </Button>
+            );
+          })}
           <HStack spacing={2} pl={2}>
             <Button
               as="a"
@@ -103,6 +142,8 @@ export default function Header({ brand = 'BluJays Wishlist', transparentUntil = 
               padding={6}
               color={"white"}
               backgroundColor={"#1e1e1e"}
+              fontWeight={"semibold"}
+              borderRadius={"8px"}
             >
               Go To Wishlist App
             </Button>
@@ -129,19 +170,34 @@ export default function Header({ brand = 'BluJays Wishlist', transparentUntil = 
               </Drawer.Header>
               <Drawer.Body>
                 <Stack spacing={2} pt={2}>
-                {navLinks.map((l) => (
-                    <Button
-                      key={l.label}
-                      as={RouterLink}
-                      to={l.to}
-                      variant="ghost"
-                      justifyContent="flex-start"
-                      onClick={onClose}
-                    >
-                      {l.label}
-                    </Button>
-                  ))}
-                  <Button as="a" href={wishlistUrl} colorScheme="blue" onClick={onClose}>Get started</Button>
+                  {navLinks.map((l) => {
+                    const Icon = l.icon;
+                    return (
+                      <Button
+                        key={l.label}
+                        as={RouterLink}
+                        to={l.to}
+                        variant="ghost"
+                        justifyContent="flex-start"
+                        onClick={onClose}
+                        role="group"
+                      >
+                        <HStack spacing={2}>
+                          <Box
+                            as={Icon}
+                            fontSize="lg"
+                            transition="transform 200ms ease"
+                            willChange="transform"
+                            _groupHover={{ transform: 'rotate(-15deg)' }}
+                          />
+                          <Text>{l.label}</Text>
+                        </HStack>
+                      </Button>
+                    );
+                  })}
+                  <Button as="a" href={wishlistUrl} colorScheme="blue" onClick={onClose}>
+                    Get started
+                  </Button>
                 </Stack>
               </Drawer.Body>
             </Drawer.Content>
