@@ -10,10 +10,16 @@ import {
   Stack,
   Text,
   Drawer,
+  Image,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaGear, FaCode} from "react-icons/fa6";
+import { FaSafari } from "react-icons/fa";
+import HoverArrowButton from '../components/ui/HoverArrowButton';
+import HoverSwapLogo from '../components/ui/HoverSwapLogo';
+
+import icon from '../assets/icons/icon.png';
 
 const navLinks = [
     { label: 'Frontend', to: '/frontend', icon: FaCode },
@@ -63,18 +69,18 @@ export default function Header({ brand = 'BluJays Wishlist', transparentUntil = 
   
     return (
         <Box
-        ref={headerRef}
-        as="header"
-        position="sticky"
-        top={0}
-        zIndex="banner"
-        bg={bg}
-        color="whiteAlpha.900"
-        backdropFilter={backdrop}
-        transition="background-color 0.2s ease, border-color 0.2s ease, backdrop-filter 0.2s ease"
-        sx={{
-          'button:focus, a:focus': { outline: 'none', boxShadow: 'none' },
-        }}
+          ref={headerRef}
+          as="header"
+          position="sticky"
+          top={0}
+          zIndex="banner"
+          bg={bg}
+          color="whiteAlpha.900"
+          backdropFilter={backdrop}
+          transition="background-color 0.2s ease, border-color 0.2s ease, backdrop-filter 0.2s ease"
+          sx={{
+            'button:focus, a:focus': { outline: 'none', boxShadow: 'none' },
+          }}
         >
           <Flex
             as="nav"
@@ -88,18 +94,17 @@ export default function Header({ brand = 'BluJays Wishlist', transparentUntil = 
           >
         {/* Left: Brand */}
         <HStack spacing={3}>
-          <Box boxSize="24px" borderRadius="6px" />
-          <ChakraLink
-            as={RouterLink}
+          <HoverSwapLogo
             to="/"
-            _hover={{ textDecoration: 'none' }}
-            _focus={{ outline: 'none', boxShadow: 'none' }}
-            _focusVisible={{ outline: 'none', boxShadow: 'none' }}
-          >
-            <Text fontWeight="semibold" letterSpacing="-0.02em" fontSize="x-large">
-              {brand}
-            </Text>
-          </ChakraLink>
+            imgSrc={icon}
+            imgAlt="BluJays Wishlist logo"
+            text={brand}
+            boxSize="42px"
+            borderRadius="8px"
+            borderColor="white"
+            borderWidth="2px"
+            p={1}
+          />
         </HStack>
 
 
@@ -132,21 +137,17 @@ export default function Header({ brand = 'BluJays Wishlist', transparentUntil = 
             );
           })}
           <HStack spacing={2} pl={2}>
-            <Button
-              as="a"
+            <HoverArrowButton
               href={wishlistUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              colorScheme="blue"
-              size="lg"
-              padding={6}
-              color={"white"}
-              backgroundColor={"#1e1e1e"}
-              fontWeight={"semibold"}
-              borderRadius={"8px"}
+              bg="#1e1e1e"
+              color="white"
+              px={6}
+              borderRadius="16px"
+              leftIcon={FaSafari}
+              py={8}
             >
               Go To Wishlist App
-            </Button>
+            </HoverArrowButton>
           </HStack>
         </HStack>
 
