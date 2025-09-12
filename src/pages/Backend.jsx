@@ -6,10 +6,10 @@ import { RiSupabaseFill } from "react-icons/ri";
 
 
 const defaultFeatures = [
-  { icon: FaPython, label: 'Python Support' },
-  { icon: RiSupabaseFill, label: 'Database Integration' },
-  { icon: FaAws, label: 'Image Handling' },
-  { icon: SiRender, label: 'API Deployment' },
+  { icon: FaPython, label: 'Python\nSupport' },
+  { icon: RiSupabaseFill, label: 'Database\nIntegration' },
+  { icon: FaAws, label: 'Image\nHandling' },
+  { icon: SiRender, label: 'API\nDeployment' },
 ];
 
 export default function Backend() {

@@ -5,10 +5,10 @@ import { SiTypescript, SiExpo, SiRender } from "react-icons/si";
 
 
 const defaultFeatures = [
-  { icon: SiTypescript, label: 'Type Safety' },
-  { icon: FaReact, label: 'Modern UI' },
-  { icon: SiExpo, label: 'Cross Platform' },
-  { icon: SiRender, label: 'Web Deployment' },
+  { icon: SiTypescript, label: 'Type\nSafety' },
+  { icon: FaReact, label: 'Modern\nUI' },
+  { icon: SiExpo, label: 'Cross\nPlatform' },
+  { icon: SiRender, label: 'Web\nDeployment' },
 ];
 
 export default function Frontend() {
