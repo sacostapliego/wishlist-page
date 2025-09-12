@@ -5,16 +5,16 @@ export default function Footer() {
   return (
     <Box
       as="footer"
-      mt={24}
+      mt={16}
       w="100%"
       background="linear-gradient(to bottom, #141414, #1d1d1d)"
-      py={8}
       display="flex"
       alignItems="center"
       justifyContent="center"
       p={24}
+      h={'30vh'}
     >
-      <HStack gap={6}>
+      <HStack gap={6} mt={-48}>
         <Box
           as="a"
           href="https://github.com/sacostapliego/"
