@@ -1,15 +1,17 @@
 import { Container, Heading, SimpleGrid, VStack, Box, Icon, Text } from '@chakra-ui/react';
-import { FaStar, FaLock, FaBolt, FaCloud, FaHeart, FaList, FaShareAlt, FaSync } from 'react-icons/fa';
+import { FaLock, FaUserFriends, FaStar, FaList, FaShareAlt, FaSync } from 'react-icons/fa';
+import { FaGift } from "react-icons/fa6";
+import { PiHandTapFill } from "react-icons/pi";
 
 const defaultFeatures = [
-  { icon: FaStar, label: 'Modern UI' },
-  { icon: FaLock, label: 'Interactive Design' },
-  { icon: FaBolt, label: 'Fast Performance' },
-  { icon: FaCloud, label: 'Cloud Sync' },
-  { icon: FaHeart, label: 'User Favorites' },
+  { icon: FaStar, label: 'Unique Wishlists' },
+  { icon: FaUserFriends, label: 'Friend Sharing' },
+  { icon: FaGift, label: 'Item Details' },
   { icon: FaList, label: 'Organized Lists' },
-  { icon: FaShareAlt, label: 'Easy Sharing' },
-  { icon: FaSync, label: 'Sync' },
+  { icon: FaShareAlt, label: 'Modern Design' },
+  { icon: PiHandTapFill, label: 'Responsive Layout' },
+  { icon: FaLock, label: 'Secure Login' },
+  { icon: FaSync, label: 'Real-time Sync' },
 ];
 
 export default function FeaturesSection({ id = 'features', features = defaultFeatures }) {
@@ -23,7 +25,7 @@ export default function FeaturesSection({ id = 'features', features = defaultFea
         {features.map((f) => {
             const I = f.icon;
             return (
-            <VStack key={f.label} spacing={3} maxW="110px">
+            <VStack key={f.label} spacing={3}>
                 <Box
                 h="64px"
                 borderRadius="20px"
@@ -35,7 +37,7 @@ export default function FeaturesSection({ id = 'features', features = defaultFea
                 >
                 <Icon as={I} boxSize={14} color="whiteAlpha.800" />
                 </Box>
-                <Text fontSize="3xl" fontWeight="semibold" textAlign="center">
+                <Text w={"170px"} fontSize="3xl" fontWeight="semibold" textAlign="center">
                 {f.label}
                 </Text>
             </VStack>
