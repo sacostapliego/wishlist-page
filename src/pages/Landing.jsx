@@ -1,6 +1,7 @@
-import { Box, Container, Heading, HStack, Text, VStack, Image } from '@chakra-ui/react';
+import { Box, Container, HStack, Text, VStack, Image } from '@chakra-ui/react';
 import HoverArrowButton from '../components/ui/HoverArrowButton';
 import { FaSafari } from 'react-icons/fa';
+import FeaturesSection from '../components/sections/FeaturesSection';
 import photo1 from '../assets/screenshots/1.png';
 import photo2 from '../assets/screenshots/2.png';
 import photo3 from '../assets/screenshots/3.png';
@@ -18,7 +19,7 @@ export default function Landing() {
         alignItems="center"
         textAlign="center"
       >
-        <Text mb={16} fontSize="6xl" fontWeight="bold">
+        <Text mb={14} fontSize="6xl" fontWeight="bold">
           A modern way to create, share, and manage your wishlist
         </Text>
 
@@ -40,13 +41,26 @@ export default function Landing() {
           <Image shadow="md" borderRadius={16} h="3xl" src={photo1}/>
           <Image shadow="md" borderRadius={16} h="2xl" src={photo3}/>
         </HStack>
-        <Box h="15vh" />
+        <Box h="5vh" />
       </Container>
 
-      <Container id="features" maxW="container.lg">
-        <Heading size="xl" mb={4}>Features</Heading>
-        <Text opacity={0.8}>Feature copy goes here.</Text>
-        <Box h="120vh" />
+      <Container id="features" w="container.sm">
+        <FeaturesSection />
+      </Container>
+
+      <Container id='link-to-app' maxW="container.sm" textAlign="center">
+        <HoverArrowButton
+            href={wishlistUrl}
+            bg="#C41E3A"
+            color="white"
+            px={6}
+            py={8}
+            borderRadius="16px"
+            leftIcon={FaSafari}
+            mb={16}
+          >
+            Go To Wishlist App
+          </HoverArrowButton>
       </Container>
     </VStack>
   );

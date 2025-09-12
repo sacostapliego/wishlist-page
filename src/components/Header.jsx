@@ -64,7 +64,6 @@ export default function Header({ brand = 'BluJays Wishlist', transparentUntil = 
   
     const isBlur = scrolled && overHero;
     const bg = isBlur ? blurBg : solidBg;
-    const borderColor = isBlur ? 'rgba(255,255,255,0.14)' : 'transparent';
     const backdrop = isBlur ? 'saturate(180%) blur(10px)' : 'none';
   
     return (
