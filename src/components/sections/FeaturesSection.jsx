@@ -4,14 +4,14 @@ import { FaGift } from "react-icons/fa6";
 import { PiHandTapFill } from "react-icons/pi";
 
 const defaultFeatures = [
-  { icon: FaStar, label: 'Unique Wishlists' },
-  { icon: FaUserFriends, label: 'Friend Sharing' },
-  { icon: FaGift, label: 'Item Details' },
-  { icon: FaList, label: 'Organized Lists' },
-  { icon: FaShareAlt, label: 'Modern Design' },
-  { icon: PiHandTapFill, label: 'Responsive Layout' },
-  { icon: FaLock, label: 'Secure Login' },
-  { icon: FaSync, label: 'Real-time Sync' },
+  { icon: FaStar, label: 'Unique\nWishlists' },
+  { icon: FaUserFriends, label: 'Friend\nSharing' },
+  { icon: FaGift, label: 'Item\nDetails' },
+  { icon: FaList, label: 'Organized\nLists' },
+  { icon: FaShareAlt, label: 'Modern\nDesign' },
+  { icon: PiHandTapFill, label: 'Responsive\nLayout' },
+  { icon: FaLock, label: 'Secure\nLogin' },
+  { icon: FaSync, label: 'Real-time\nSync' },
 ];
 
 export default function FeaturesSection({ id = 'features', features = defaultFeatures }) {
@@ -37,7 +37,7 @@ export default function FeaturesSection({ id = 'features', features = defaultFea
                 >
                 <Icon as={I} boxSize={14} color="whiteAlpha.800" />
                 </Box>
-                <Text w={"170px"} fontSize="3xl" fontWeight="semibold" textAlign="center">
+                <Text fontSize="3xl" fontWeight="semibold" textAlign="center" whiteSpace="pre-line">
                 {f.label}
                 </Text>
             </VStack>

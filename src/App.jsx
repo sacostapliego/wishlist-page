@@ -6,7 +6,7 @@ import Backend from './pages/Backend';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/wishlist-page">
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Landing />} />
