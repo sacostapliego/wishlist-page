@@ -12,9 +12,8 @@ export default function Footer() {
       alignItems="center"
       justifyContent="center"
       p={24}
-      h={'30vh'}
     >
-      <HStack gap={6} mt={-48}>
+      <HStack gap={6} mt={-40}>
         <Box
           as="a"
           href="https://github.com/sacostapliego/"
