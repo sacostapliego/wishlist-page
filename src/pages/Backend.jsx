@@ -6,10 +6,10 @@ import { RiSupabaseFill } from "react-icons/ri";
 
 
 const defaultFeatures = [
-  { icon: FaPython, label: 'Python\nSupport' },
-  { icon: RiSupabaseFill, label: 'Database\nIntegration' },
-  { icon: FaAws, label: 'Image\nHandling' },
-  { icon: SiRender, label: 'API\nDeployment' },
+  { icon: FaPython, label: 'Python Support' },
+  { icon: RiSupabaseFill, label: 'Database Integration' },
+  { icon: FaAws, label: 'Image Handling' },
+  { icon: SiRender, label: 'API Deployment' },
 ];
 
 export default function Backend() {
@@ -23,7 +23,7 @@ export default function Backend() {
         alignItems="center"
         textAlign="center"
       >
-        <Text fontSize="3xl" fontWeight="semibold" textAlign="center" whiteSpace="pre-line">
+        <Text mb={14} fontSize="xl" fontWeight="bold">
           [IMAGE OF BACKEND ARCHITECTURE DIAGRAM HERE]
         </Text>
       </Container>

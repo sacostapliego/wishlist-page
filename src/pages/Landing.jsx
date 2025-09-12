@@ -8,13 +8,6 @@ import photo3 from '../assets/screenshots/3.png';
 
 const wishlistUrl = 'https://cardinal-wishlist.onrender.com/';
 
-/*
-TODO: Update image3 with item later
-- Photo1: Update with list view when priority is done
-- Photo2: Update when I have multiple wishlists, and friend wishlists with unique names and colors
-- Photo3: Update when the items displays who is getting the item
-*/
-
 export default function Landing() {
   return (
     <VStack align="start" spacing={12} pt={8}>
