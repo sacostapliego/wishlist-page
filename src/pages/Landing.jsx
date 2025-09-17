@@ -19,7 +19,7 @@ export default function Landing() {
         alignItems="center"
         textAlign="center"
       >
-        <Text mb={14} fontSize="6xl" fontWeight="bold">
+        <Text mb={14} fontSize={{ base: "4xl", md: "6xl" }} fontWeight="bold">
           A modern way to create, share, and manage your wishlist
         </Text>
 
@@ -37,9 +37,26 @@ export default function Landing() {
         </HoverArrowButton>
 
         <HStack justify="center" gap={8} w="full" flex={1}>
-          <Image shadow="md" borderRadius={16} h="2xl" src={photo2}/>
-          <Image shadow="md" borderRadius={16} h="3xl" src={photo1}/>
-          <Image shadow="md" borderRadius={16} h="2xl" src={photo3}/>
+          <Image 
+            shadow="md"
+            borderRadius={16}
+            h="2xl"
+            src={photo2}
+            display={{ base: 'none', md: 'block' }}
+          />
+          <Image 
+            shadow="md"
+            borderRadius={16}
+            h="3xl"
+            src={photo1}
+          />
+          <Image 
+            shadow="md"
+            borderRadius={16}
+            h="2xl"
+            src={photo3}
+            display={{ base: 'none', md: 'block' }}
+          />
         </HStack>
         <Box h="5vh" />
       </Container>

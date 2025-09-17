@@ -150,17 +150,17 @@ export default function Header({ brand = 'BluJays Wishlist', transparentUntil = 
           </HStack>
         </HStack>
 
-        {/* Mobile: Hamburger */}
-        <IconButton
-          aria-label="Open menu"
-          variant="ghost"
-          display={{ base: 'inline-flex', md: 'none' }}
-          onClick={onOpen}
-          icon={<GiHamburgerMenu />}
-        />
-
         {/* Chakra Drawer */}
         <Drawer.Root placement="right" open={isOpen} onOpenChange={(e) => (e.open ? onOpen() : onClose())}>
+          <Drawer.Trigger asChild>
+            <IconButton
+              variant="ghost"
+              display={{ base: 'inline-flex', md: 'none' }}
+              colorPalette="white"
+            >
+              <GiHamburgerMenu />
+            </IconButton>
+          </Drawer.Trigger>
           <Drawer.Backdrop />
           <Drawer.Positioner>
             <Drawer.Content>
