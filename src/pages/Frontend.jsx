@@ -13,7 +13,7 @@ const defaultFeatures = [
 
 export default function Frontend() {
   return (
-    <VStack align="start" spacing={12} pt={8}>
+    <VStack align="start" spacing={12} pt={8} minH={"100vh"}> 
       <Container 
         id="hero"
         maxW="container.lg"
@@ -23,7 +23,7 @@ export default function Frontend() {
         textAlign="center"
       >
         <Text mb={14} fontSize="xl" fontWeight="bold">
-          [IMAGE OF FRONEND ARCHITECTURE DIAGRAM HERE]
+          {/* [IMAGE OF FRONEND ARCHITECTURE DIAGRAM HERE] */}
         </Text>
       </Container>
       <FeaturesSection features={defaultFeatures} />
